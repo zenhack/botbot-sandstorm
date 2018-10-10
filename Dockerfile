@@ -40,7 +40,7 @@ RUN . .venv/bin/activate && \
 	cd .venv/src/botbot && \
 	make dependencies
 
-RUN COPY ./env .venv/src/botbot/.env
+COPY ./env .venv/src/botbot/.env
 
 COPY ./first-run.sh /app/
 COPY ./launch.sh /app/
