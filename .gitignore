@@ -1,0 +1,6 @@
+# Built package:
+*.spk
+
+# I(zenhack) sometimes do spk unpack to see the contents of the package;
+# this rule covers the output:
+BotBot-*

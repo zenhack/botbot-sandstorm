@@ -189,17 +189,17 @@ const env :List(Util.KeyValue) = [
     (key = "PATH", value = "/usr/local/bin:/usr/bin:/bin"),
     (key = "SANDSTORM", value = "1"),
 
-    (key = "HOME", value = "/var")
+    (key = "HOME", value = "/var"),
     # Work around a bug in python; see
     # https://docs.sandstorm.io/en/latest/developing/raw-python/
-  ]
+  ];
 
 const firstRunCmd :Spk.Manifest.Command = (
-  argv = ["/app/first-run.sh"],
+  argv = ["/app/launch.sh", "firstrun"],
   environ = .env,
 );
 
 const launchCmd :Spk.Manifest.Command = (
-  argv = ["/app/launch.sh"],
+  argv = ["/app/launch.sh", "restart"],
   environ = .env,
 );

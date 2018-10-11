@@ -6,12 +6,11 @@ RUN apk add \
 	python2-dev \
 	py2-virtualenv
 
-FROM common
+# The build environment; includes Go compiler, dev tools...
+FROM common as build
 RUN apk add \
 	git \
 	go \
-	redis \
-	postgresql \
 	postgresql-dev \
 	curl \
 	npm
@@ -42,5 +41,12 @@ RUN . .venv/bin/activate && \
 
 COPY ./env .venv/src/botbot/.env
 
-COPY ./first-run.sh /app/
 COPY ./launch.sh /app/
+
+# The final image. No dev tools, but includes db servers/everything needed at
+# runtime...
+FROM common
+RUN apk add \
+	redis \
+	postgresql
+COPY --from=build /app /app
