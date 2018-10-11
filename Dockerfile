@@ -43,6 +43,10 @@ COPY ./env .venv/src/botbot/.env
 
 COPY ./launch.sh /app/
 
+# Delete the histories for repos we've cloned; these take up a non-trivial
+# amount of space:
+RUN find /app -type d -name .git | xargs rm -rf
+
 # The final image. No dev tools, but includes db servers/everything needed at
 # runtime...
 FROM common
