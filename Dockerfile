@@ -3,7 +3,6 @@ FROM zenhack/sandstorm-http-bridge:238 as common
 RUN apk add \
 	python2 \
 	build-base \
-	python2-dev \
 	py2-virtualenv
 
 # The build environment; includes Go compiler, dev tools...
@@ -11,6 +10,7 @@ FROM common as build
 RUN apk add \
 	git \
 	go \
+	python2-dev \
 	postgresql-dev \
 	curl \
 	npm
